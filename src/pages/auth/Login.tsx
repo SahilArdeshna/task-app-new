@@ -2,7 +2,10 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { login } from "../../services/user";
 import Public from "../../layouts/types/Public";
+import { setItem } from "../../utils/localstorage";
+import { useAuth } from "../../context/AuthContext";
 import { withLayout } from "../../layouts/withLayout";
 import { loginValidationSchema } from "../../schemas/validation/auth";
 
@@ -12,6 +15,8 @@ type ILoginSchema = {
 };
 
 const Login: FC = () => {
+  const { setUser } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -20,7 +25,10 @@ const Login: FC = () => {
 
   const onSubmit = async (values: ILoginSchema) => {
     try {
-      console.log("values", values);
+      const data = await login(values);
+
+      setItem(process.env.REACT_APP_TOKEN_NAME || "", data.token);
+      setUser(data.user);
     } catch (err) {
       console.log(err);
     }
@@ -33,10 +41,10 @@ const Login: FC = () => {
           <img
             alt="Logo"
             src="/images/logo_512.png"
-            className="mx-auto h-16 w-auto"
+            className="mx-auto h-14 w-auto"
           />
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-            Sign in to your account
+            Log in to your account
           </h2>
         </div>
         <form
@@ -84,7 +92,7 @@ const Login: FC = () => {
               disabled={isSubmitting}
               className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white enabled:hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              Sign in
+              Log in
             </button>
           </div>
 
