@@ -4,8 +4,8 @@ import { FC, Fragment, MutableRefObject, useEffect, useState } from "react";
 
 import Icon from "../icon/Icon";
 import { ReactComponent as UserIcon } from "../../../icons/user.svg";
-import { ReactComponent as TasksIcon } from "../../../icons/taks.svg";
 import { ROUTE_TASKS, ROUTE_PROFILE } from "../../../utils/constants";
+import { ReactComponent as TasksIcon } from "../../../icons/tasks.svg";
 import { ReactComponent as TimesIcon } from "../../../icons/times.svg";
 
 const navigation = [
@@ -101,7 +101,7 @@ const Sidebar: FC<ISidebar> = ({ buttonRef }) => {
                     <NavLink
                       key={item.name}
                       to={item.href}
-                      className={(isActive) =>
+                      className={({ isActive }) =>
                         `text-brand-100 hover:text-white hover:bg-brand-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md ${
                           isActive ? "bg-brand-800 text-white" : ""
                         }`
@@ -148,7 +148,7 @@ const Sidebar: FC<ISidebar> = ({ buttonRef }) => {
                   <NavLink
                     key={item.name}
                     to={item.href}
-                    className={(isActive) =>
+                    className={({ isActive }) =>
                       `text-brand-100 hover:text-white hover:bg-brand-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md ${
                         isActive ? "bg-brand-800 text-white" : ""
                       }`
