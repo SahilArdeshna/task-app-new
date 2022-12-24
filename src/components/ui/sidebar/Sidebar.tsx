@@ -9,7 +9,12 @@ import { ReactComponent as TasksIcon } from "../../../icons/tasks.svg";
 import { ReactComponent as TimesIcon } from "../../../icons/times.svg";
 
 const navigation = [
-  { name: "Tasks", href: ROUTE_TASKS, icon: TasksIcon, current: true },
+  {
+    name: "Tasks",
+    href: `${ROUTE_TASKS}?type=all`,
+    icon: TasksIcon,
+    current: true,
+  },
   {
     name: "Profile",
     href: ROUTE_PROFILE,

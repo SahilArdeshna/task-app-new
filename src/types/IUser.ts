@@ -1,6 +1,6 @@
 export type IUser = {
   _id: string;
-  name: boolean;
+  name: string;
   email: string;
-  profile?: string;
+  avatar?: string;
 };

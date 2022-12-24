@@ -3,26 +3,33 @@ import { ITask } from "../types/ITask";
 
 export async function addTask(task: string) {
   try {
-    const res = await axios.post(
+    const { data } = await axios.post(
       `${process.env.REACT_APP_API_ENDPOINT}/tasks`,
       {
         description: task,
       }
     );
 
-    return res;
+    return data;
   } catch (err) {
     console.log(err);
     return err;
   }
 }
 
-export async function getTasks() {
+export async function getTasks(
+  skip: number,
+  limit: number,
+  completed?: string
+) {
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_API_ENDPOINT}/tasks`
-    );
+    let uri = `${process.env.REACT_APP_API_ENDPOINT}/tasks?limit=${limit}&skip=${skip}`;
 
+    if (completed) {
+      uri = uri + `&completed=${completed}`;
+    }
+
+    const { data } = await axios.get(uri);
     return data;
   } catch (err) {
     return err;
@@ -31,7 +38,7 @@ export async function getTasks() {
 
 export async function updateTask(updateValue: ITask) {
   try {
-    const res = await axios.put(
+    const { data } = await axios.put(
       `${process.env.REACT_APP_API_ENDPOINT}/tasks/${updateValue._id}`,
       {
         completed: updateValue.completed,
@@ -39,7 +46,7 @@ export async function updateTask(updateValue: ITask) {
       }
     );
 
-    return res;
+    return data;
   } catch (err) {
     return err;
   }
@@ -47,11 +54,11 @@ export async function updateTask(updateValue: ITask) {
 
 export async function deleteTask(id: string) {
   try {
-    const res = await axios.delete(
+    const { data } = await axios.delete(
       `${process.env.REACT_APP_API_ENDPOINT}/tasks/${id}`
     );
 
-    return res;
+    return data;
   } catch (err) {
     return err;
   }

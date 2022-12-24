@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { FC, PropsWithChildren, useEffect } from "react";
 
 import { useAuth } from "../../context/AuthContext";
+import Loader from "../../components/ui/loader/Loader";
 
 const Public: FC<PropsWithChildren> = ({ children }) => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Public: FC<PropsWithChildren> = ({ children }) => {
   }, [user, isLoading, navigate]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return <div className="bg-gray-100 h-full">{children}</div>;

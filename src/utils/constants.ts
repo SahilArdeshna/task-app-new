@@ -15,3 +15,14 @@ export const ROUTE_TASKS = "/tasks";
 export const ROUTE_LOGIN = "/login";
 export const ROUTE_PROFILE = "/profile";
 export const ROUTE_REGISTRATION = "/registration";
+
+// Loading
+export const LOADING_TASKS = "Loading tasks";
+
+// Not found
+export const NOT_FOUND_TASKS = "Tasks not available, Please create new task";
+
+// Tabs
+export const ALL = "all";
+export const COMPLETED = "completed";
+export const IN_PROGRESS = "in_progress";
