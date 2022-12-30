@@ -26,6 +26,7 @@ import {
   IN_PROGRESS,
   ROUTE_TASKS,
 } from "../../utils/constants";
+import { toast } from "react-toastify";
 
 const Tasks: FC = () => {
   const navigate = useNavigate();
@@ -77,6 +78,7 @@ const Tasks: FC = () => {
       await taskService.addTask(inputValue);
       setInputValue("");
       await getTasks();
+      toast.success("Task created successfully!");
     } catch (err) {
       console.log(err);
     } finally {
@@ -116,6 +118,7 @@ const Tasks: FC = () => {
 
       await taskService.deleteTask(id);
       await getTasks();
+      toast.success("Task deleted successfully!");
       closeDeleteModal();
     } catch (err) {
       console.log(err);
