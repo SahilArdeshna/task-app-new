@@ -54,7 +54,12 @@ export async function logoutAll() {
 export async function uploadProfile(payload: any) {
   const { data } = await axios.post(
     `${process.env.REACT_APP_API_ENDPOINT}/users/me/avatar`,
-    payload
+    payload,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
 
   return data;

@@ -3,7 +3,7 @@ import cx from "classnames";
 import Icon from "../icon/Icon";
 import { FC, useEffect, useState } from "react";
 
-type ITab = { id: string; title: string; icon: FC; isDisabled?: boolean };
+type ITab = { id: string; title: string; icon?: FC; isDisabled?: boolean };
 type ITabBar = {
   tabs: ITab[];
   defaultTab?: string;

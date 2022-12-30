@@ -2,7 +2,10 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { signup } from "../../services/user";
 import Public from "../../layouts/types/Public";
+import { setItem } from "../../utils/localstorage";
+import { useAuth } from "../../context/AuthContext";
 import { withLayout } from "../../layouts/withLayout";
 import { registerValidationSchema } from "../../schemas/validation/auth";
 
@@ -14,6 +17,8 @@ type IRegisterSchema = {
 };
 
 const Registration: FC = () => {
+  const { setUser } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -24,7 +29,10 @@ const Registration: FC = () => {
 
   const onSubmit = async (values: IRegisterSchema) => {
     try {
-      console.log("values", values);
+      const data = await signup(values);
+
+      setItem(process.env.REACT_APP_TOKEN_NAME || "", data.token);
+      setUser(data.user);
     } catch (err) {
       console.log(err);
     }

@@ -177,7 +177,9 @@ const Private: FC<PropsWithChildren> = ({ children }) => {
         )}
       </Disclosure>
 
-      <main className="flex-1 relative pb-8 z-0 bg-gray-100">{children}</main>
+      <main className="flex-1 relative z-0 bg-gray-100 h-calc64px">
+        {children}
+      </main>
     </div>
   );
 };

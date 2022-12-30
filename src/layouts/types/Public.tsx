@@ -18,7 +18,7 @@ const Public: FC<PropsWithChildren> = ({ children }) => {
     return <Loader />;
   }
 
-  return <div className="bg-gray-100 h-full">{children}</div>;
+  return <div className="bg-gray-100 h-screen">{children}</div>;
 };
 
 export default Public;

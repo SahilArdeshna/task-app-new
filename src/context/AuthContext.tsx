@@ -15,6 +15,7 @@ import { ERROR_WENT_WRONG } from "../utils/constants";
 type AuthContextProps = {
   user?: IUser;
   isLoading: boolean;
+  getUser: () => void;
   setUser: React.Dispatch<React.SetStateAction<IUser | undefined>>;
 };
 
@@ -22,6 +23,7 @@ export const AuthContext = createContext<AuthContextProps>({
   user: undefined,
   isLoading: false,
   setUser: () => {},
+  getUser: () => {},
 });
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -48,7 +50,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [getUser]);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, isLoading }}>
+    <AuthContext.Provider value={{ user, setUser, getUser, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

@@ -9,6 +9,9 @@ module.exports = {
         brand: colors.blue,
         "og-red": colors.red,
       },
+      height: {
+        calc64px: "calc(100vh - 64px)",
+      },
     },
   },
   plugins: [],

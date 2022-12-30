@@ -19,10 +19,7 @@ import Button from "../../components/ui/button/Button";
 import TabBar from "../../components/ui/tabbar/TabBar";
 import { useLocation, useNavigate } from "react-router";
 import Container from "../../components/ui/container/Container";
-import { ReactComponent as TasksIcon } from "../../icons/tasks.svg";
 import DeleteModal from "../../components/page/delete-modal/DeleteModal";
-import { ReactComponent as InprogressIcon } from "../../icons/in-progress.svg";
-import { ReactComponent as CheckCircleIcon } from "../../icons/check-circle.svg";
 import {
   ALL,
   COMPLETED,
@@ -50,9 +47,9 @@ const Tasks: FC = () => {
   const task_type = queryParams.get("type");
 
   const tabs = [
-    { id: ALL, title: "All", icon: TasksIcon },
-    { id: IN_PROGRESS, title: "In Progress", icon: InprogressIcon },
-    { id: COMPLETED, title: "Completed", icon: CheckCircleIcon },
+    { id: ALL, title: "All" },
+    { id: IN_PROGRESS, title: "In Progress" },
+    { id: COMPLETED, title: "Completed" },
   ];
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -76,11 +73,6 @@ const Tasks: FC = () => {
     try {
       if (!inputValue) return;
       setIsAdding(true);
-
-      const payload = {
-        completed: false,
-        description: inputValue,
-      };
 
       await taskService.addTask(inputValue);
       setInputValue("");
@@ -108,7 +100,6 @@ const Tasks: FC = () => {
       }
 
       const tasks = await taskService.getTasks(0, 0, completed);
-      console.log("tasks", tasks);
       setTasks(tasks);
     } catch (err) {
       console.log(err);
