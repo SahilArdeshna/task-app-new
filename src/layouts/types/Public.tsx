@@ -15,7 +15,11 @@ const Public: FC<PropsWithChildren> = ({ children }) => {
   }, [user, isLoading, navigate]);
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className="flex justify-center h-full">
+        <Loader />
+      </div>
+    );
   }
 
   return <div className="bg-gray-100 h-screen">{children}</div>;

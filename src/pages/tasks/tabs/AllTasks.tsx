@@ -65,7 +65,9 @@ const AllTasks: FC<AllTasksProps> = ({
   );
 
   return isLoading ? (
-    <Loader message={LOADING_TASKS} />
+    <div className="h-[400px] flex justify-center">
+      <Loader message={LOADING_TASKS} />
+    </div>
   ) : (
     <div className="mt-8">
       <Table columns={columns} records={tasks || []} />

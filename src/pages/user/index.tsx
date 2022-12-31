@@ -115,18 +115,22 @@ const Profile: FC = () => {
     try {
       if (!user) return;
 
-      console.log("values", values);
-
       const payload = {
         ...values,
         email: user.email,
-        avatar: user.avatar || "",
       };
 
-      const updated_user = await userService.updateUser(payload);
-      setUser(updated_user);
-    } catch (err) {
+      const res = await userService.updateUser(payload);
+      setUser(res.user);
+      toast.success(res.message);
+    } catch (err: any) {
       console.log(err);
+      let error = "Something went wrong, Please try agian later!";
+      if (err.response && err.response.data) {
+        error = err.response.data;
+      }
+
+      toast.error(error);
     }
   };
 
@@ -142,7 +146,7 @@ const Profile: FC = () => {
   useEffect(() => {
     if (!user) return;
 
-    reset({ ...user });
+    reset({ name: user.name, email: user.email });
   }, [user, reset]);
 
   return (

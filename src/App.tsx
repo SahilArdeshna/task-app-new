@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <div>
+    <div className="h-full">
       <Routes>
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/profile" element={<Profile />} />
@@ -19,7 +19,7 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="*" element={<Navigate replace to="/tasks" />} />
       </Routes>
-      <ToastContainer />
+      <ToastContainer autoClose={3000} />
     </div>
   );
 }

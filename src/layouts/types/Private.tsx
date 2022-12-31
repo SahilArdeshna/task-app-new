@@ -53,7 +53,11 @@ const Private: FC<PropsWithChildren> = ({ children }) => {
   }, [user, isLoading, navigate]);
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className="flex justify-center h-full">
+        <Loader />
+      </div>
+    );
   }
 
   return (

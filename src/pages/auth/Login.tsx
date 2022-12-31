@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -29,8 +30,14 @@ const Login: FC = () => {
 
       setItem(process.env.REACT_APP_TOKEN_NAME || "", data.token);
       setUser(data.user);
-    } catch (err) {
+    } catch (err: any) {
       console.log(err);
+      let error = "Something went wrong, Please try agian later!";
+      if (err.response && err.response.data) {
+        error = err.response.data;
+      }
+
+      toast.error(error);
     }
   };
 
